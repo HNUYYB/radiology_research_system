@@ -1,0 +1,42 @@
+# 环境变量（含敏感信息）
+.env
+
+# Claude Code 本地配置
+.claude/
+
+# Python
+__pycache__/
+*/__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# 数据库
+instance/*.db
+*.db
+backend/instance/*.db
+backend/data/*.db
+
+# 上传文件
+uploads/
+
+# Node
+frontend/node_modules/
+frontend/build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+Thumbs.db
+.DS_Store
+
+# 测试覆盖率
+htmlcov/
+.coverage
+.pytest_cache/

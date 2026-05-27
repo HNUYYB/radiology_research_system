@@ -1,0 +1,15 @@
+{
+  "short_name": "放射学研究系统",
+  "name": "基于多智能体协同与检索增强的放射学研究方案自动生成系统",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
