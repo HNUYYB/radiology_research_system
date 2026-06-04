@@ -1,0 +1,489 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5002
+ * Running on http://192.168.5.7:5002
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:26:18] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:26:18] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:26:24] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:26:25] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:26:42] "[31m[1mPOST /api/settings/llm/test HTTP/1.1[0m" 400 -
+INFO:routes.llm_settings:用户 1 保存了 API Key (provider=deepseek)
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:28:12] "POST /api/settings/llm/key HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:28:12] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:28:19] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:28:20] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:28:21] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:28:21] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:30:06] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:36:30] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:36:30] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:36:30] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 18:36:30] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:35] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:36] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:42] "POST /api/pubmed/recommendations/search HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:45] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:45] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:47] "GET /api/profile/options HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:47] "GET /api/profile/student/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:47] "GET /api/profile/options HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:47] "GET /api/profile/student/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:50] "GET /socket.io/?EIO=4&transport=polling&t=PwDI5sq HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:51] "POST /socket.io/?EIO=4&transport=polling&t=PwDI5xl&sid=YS6lj65P7_-sCKSBAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:51] "GET /socket.io/?EIO=4&transport=polling&t=PwDI5xm&sid=YS6lj65P7_-sCKSBAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:51] "POST /socket.io/?EIO=4&transport=polling&t=PwDI60c&sid=YS6lj65P7_-sCKSBAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:39:51] "GET /socket.io/?EIO=4&transport=polling&t=PwDI60c.0&sid=YS6lj65P7_-sCKSBAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:28] "GET /api/profile/student/3 HTTP/1.1" 200 -
+INFO:routes.profile:学生画像更新成功: 用户ID 3
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:29] "PUT /api/profile/student/3 HTTP/1.1" 200 -
+E:\radiology_research_system\backend\app.py:236: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  current_user = User.query.get(current_user_id)
+E:\radiology_research_system\backend\app.py:49: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+  'started_at': datetime.utcnow().isoformat(),
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:29] "[35m[1mPOST /api/multi-agent/generate-plan HTTP/1.1[0m" 202 -
+E:\radiology_research_system\backend\app.py:268: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+  user = User.query.get(user_id)
+INFO:agents:============================================================
+INFO:agents:开始多智能体协同研究方案生成流程
+INFO:agents:============================================================
+INFO:evidence_pool:[EvidencePool] 证据池已重置
+INFO:agents:  全局证据池已重置
+INFO:agents:[Step 0] 输入解析 — LLM语义理解用户输入
+INFO:agents:[InputParsingAgent] ReAct 循环 step 1/3
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:32] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:[InputParsingAgent] 调用工具: search_pubmed
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:35] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:evidence_pool:[EvidencePool] 新文献入库: Habitat radiomics analysis for progression free su... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Machine learning-based radiomics for predicting ou... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics signature for dynamic monitoring of tumo... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Personalized prediction of immunotherapy response ... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics analysis to predict pulmonary nodule mal... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Performance of radiomics-based artificial intellig... | 等级: 1 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Interpretable machine learning model for predictin... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Prediction of malignant esophageal fistula in esop... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics-based prediction of microsatellite insta... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics with Machine Learning Improves the Predi... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Diagnostic accuracy of radiomics-based machine lea... | 等级: 1 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: MRI radiomics and biological correlations for pred... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Contrast-Enhanced Mammography Radiomics Analysis f... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics-Based Prediction Model for Outcome of Ra... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: MRI Radiomics and Automated Habitat Analysis Enhan... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Deep Learning Features Can Improve Radiomics-Based... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Prediction of first-line immunotherapy response in... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: CT-based radiomics analysis for prediction of resp... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Habitat Imaging With Tumoral and Peritumoral Radio... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Bone metastasis prediction in non-small-cell lung ... | 等级: 4 | 来源: InputParsingAgent
+INFO:evidence_pool:[EvidencePool] 批量入库: 新增 20/20 篇
+INFO:agents:[InputParsingAgent] ReAct 循环 step 2/3
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:38] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:41] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:44] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:[InputParsingAgent] ReAct 循环完成，共 2 步
+WARNING:agents:JSON解析：通过截断修复成功 [InputParsingAgent]
+INFO:agents:  解析完成: 疾病域=未知, 模态=未知, 完整度=未知
+INFO:agents:[Step 1] 学生画像分析 — LLM解析用户输入
+INFO:agents:parse_student_input called with type=dict, keys=['id', 'user_id', 'grade', 'specialty', 'available_resources', 'case_scale', 'follow_up_available', 'gold_standard_available', 'statistical_background', 'ai_background', 'time_constraint', 'target_journal_level', 'created_at', 'updated_at', 'raw_input']
+INFO:agents:extract_basic_info called with type=str
+INFO:agents:  [ProfileAgent] AI补全字段: ['has_data', 'data_volume', 'gold_standard_available', 'follow_up_available', 'software_capability', 'statistical_background', 'ai_background', 'expected_graduation', 'target_journal_level', 'supervisor_support', 'ethical_feasibility', 'cross_dept_resources']
+INFO:agents:  [ProfileAgent] 补全前: grade=未知, ai_bg=, stats_bg=
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:47] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:50] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:  [ProfileAgent] 合并后: ai_bg=熟练, stats_bg=熟练, grade=博四及以上, time=24个月以上, journal=SCI高分
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:54] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:40:57] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+WARNING:agents:JSON解析：通过正则提取成功 [StudentProfile._ai_recommend_tech]，提取了 1 个字段
+INFO:agents:  学生画像完成: 放射学
+INFO:agents:[Step 2] 问题定义 — LLM定义临床/科学问题
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:00] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:03] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:06] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:09] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:12] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:15] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:18] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:  临床问题: 在非小细胞肺癌的临床管理中，现有的TNM分期系统虽然广泛应用，但无法充分反映肿瘤的生物学异质性，导致部分患者预后评估不准...
+INFO:agents:[Step 3] 证据检索 — LLM驱动PubMed检索策略
+INFO:agents:  [EvidenceRetrieval] LLM分析研究意图，生成检索策略
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:21] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:24] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:27] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:30] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:  [EvidenceRetrieval] 检索策略: 3D ResNet-50迁移学习CT深度学习特征融合临床病理预测NSCLC总生存期
+INFO:agents:  [EvidenceRetrieval] 检索 PubMed...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:33] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:36] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:39] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:evidence_pool:[EvidencePool] 新文献入库: Detection and characterization of lung cancer usin... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Deep Learning Predicts Lung Cancer Treatment Respo... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics-Based Support Vector Machine Distinguish... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: PET/CT based cross-modal deep learning signature t... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Non-invasive prediction of NSCLC immunotherapy eff... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: ITHscore: comprehensive quantification of intra-tu... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Prognostic and predictive values of a multimodal n... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Diagnostic accuracy of CT and PET/CT radiomics in ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Intratumoral and peritumoral PET/CT-based radiomic... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Mining whole-lung information by artificial intell... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Predicting benefit from immune checkpoint inhibito... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: CT-based quantification of intratumoral heterogene... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Habitat radiomics and deep learning fusion nomogra... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Thymic health and immunotherapy outcomes in patien... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Development and validation of a radiomics-based no... | 等级: 2 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Non-invasive decision support for NSCLC treatment ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Short-term intra- and peri-tumoral spatiotemporal ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Development and validation of a radiogenomics prog... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Attention-guided framework for integrative omics a... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Predicting response to cancer immunotherapy using ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Utilizing Clinicopathological and Radiomic Feature... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics features as predictive and prognostic bi... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomic phenotypes of oligometastatic non-small c... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics for Survival Risk Stratification of Clin... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics Biomarkers to Predict Checkpoint Inhibit... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Prediction of tumor-infiltrating lymphocytes throu... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Noninvasive radiomic biomarkers for predicting pse... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomicsmetabolic signature profiles for advanced... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomic Analysis and Liquid Biopsy in Preoperativ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Trustworthy AI for stage IV non-small cell lung ca... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Exploration of Fully-Automated Body Composition An... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: PET/CT-based deep learning model predicts distant ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Survival prediction for stage I-IIIA non-small cel... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Machine learning-based prediction of N2 lymph node... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Preoperative evaluation of visceral pleural invasi... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Deep segmentation networks predict survival of non... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: CT-based deep learning model for improved disease-... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Development of a multi-feature predictive model fo... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: AI Prognostication in Nonsmall Cell Lung Cancer: A... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Enhanced NSCLC subtyping and staging through atten... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Lymphadenectomy and Upstaging in Thoracic Oncology... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Multimodal deep learning radiomics model for predi... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Automated CT quantification of interstitial lung a... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Deep Learning Features and Metabolic Tumor Volume ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Nomograms integrating CT radiomic and deep learnin... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: A Comprehensive Review on the Application of Artif... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: "AI tumor delineation for all breathing phases in ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Prognostic value of anthropometric measures extrac... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Fractal-driven self-supervised learning enhances e... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: A Nomogram Based on CT Deep Learning Signature: A ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Integration of intratumoral/peritumoral radiomics ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 批量入库: 新增 51/52 篇
+INFO:agents:  [EvidenceRetrieval] PubMed 返回 52 篇，51 篇新入库（证据池共 71 篇）
+INFO:agents:  [EvidenceRetrieval] 后台检索 arXiv（不阻塞主流程）...
+INFO:agents:  [EvidenceRetrieval] 等待 arXiv 后台检索（最多60秒）...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:42] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:api_clients:  [arXiv/CrossRef] 检索完成: 返回 10 篇
+INFO:evidence_pool:[EvidencePool] 新文献入库: Fig. 2. The methods of differential diagnostics of... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Lung Volume at Diagnosis and Overall Survival in N... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Predicting Mutation Status and Recurrence Free Sur... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Adjuvant treatment in resected stage II &amp; III ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Mediastinal staging of non-small-cell lung cancer:... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: DETECT-LC: A 3D Deep Learning and Textural Radiomi... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Physicians prognosis of survival in non small cell... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Correlations of Twist Expression with Pathological... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Hand-Crafted Quantitative Radiomic Analysis of Com... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 批量入库: 新增 9/10 篇
+INFO:agents:  [EvidenceRetrieval] arXiv 后台检索完成: 10 篇，9 篇入库
+INFO:agents:  [EvidenceRetrieval] arXiv 检索成功，补充 10 篇
+INFO:agents:  [EvidenceRetrieval] 共检索到 62 篇原始文献 (PubMed:52, arXiv:10)
+INFO:agents:  [EvidenceRetrieval] LLM评估文献相关性...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:45] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:48] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:41:51] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:  [EvidenceRetrieval] 融合评分: 最高=72.7, 最低=41.7, 共19篇
+INFO:agents:  [EvidenceRetrieval] 相关性筛选后保留 19 篇
+INFO:agents:  [EvidenceRetrieval] LLM提炼证据综述...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:34] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:35] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:evidence_pool:[EvidencePool] 研究空白发现: 方法学=0, 数据=0, 矛盾=0
+INFO:agents:  检索到 0 篇文献
+INFO:agents:[Step 4] 方案生成 — 结合文献证据生成研究方案
+INFO:agents:  [PlanGeneration] 尝试生成 (attempt=1, max_tokens=3000)
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:38] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:42] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:45] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:48] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:51] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:54] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:42:57] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:Attempting to parse AI response, length: 2594
+INFO:agents:Successfully parsed AI response with keys: ['title', 'background', 'clinical_problem', 'scientific_problem', 'hypothesis', 'objectives', 'study_design', 'subjects_criteria', 'variables_endpoints', 'statistical_analysis', 'innovation', 'risks_alternatives', 'timeline']
+INFO:agents:方案相关性检查失败: 匹配关键词 []/['放射学预测癌', '提出一种基于', '症的方法'] (比例: 0.00)
+WARNING:agents:AI生成的方案相关性不足，尝试重新生成
+INFO:agents:  [PlanGeneration] 尝试生成 (attempt=2, max_tokens=2500)
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:00] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:03] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:06] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:09] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:12] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:Attempting to parse AI response, length: 2906
+INFO:agents:Successfully parsed AI response with keys: ['title', 'background', 'clinical_problem', 'scientific_problem', 'hypothesis', 'objectives', 'study_design', 'subjects_criteria', 'variables_endpoints', 'statistical_analysis', 'innovation', 'risks_alternatives', 'timeline']
+INFO:agents:方案相关性检查失败: 匹配关键词 []/['放射学预测癌', '提出一种基于', '症的方法'] (比例: 0.00)
+WARNING:agents:AI生成的方案相关性不足，尝试重新生成
+INFO:agents:  [PlanGeneration] 尝试生成 (attempt=3, max_tokens=2000)
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:15] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:18] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:21] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:24] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:27] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:30] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:33] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:36] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:Attempting to parse AI response, length: 2971
+INFO:agents:Successfully parsed AI response with keys: ['title', 'background', 'clinical_problem', 'scientific_problem', 'hypothesis', 'objectives', 'study_design', 'subjects_criteria', 'variables_endpoints', 'statistical_analysis', 'innovation', 'risks_alternatives', 'timeline']
+INFO:agents:方案相关性检查失败: 匹配关键词 []/['放射学预测癌', '提出一种基于', '症的方法'] (比例: 0.00)
+WARNING:agents:多次生成方案相关性仍不足，返回已生成的最优方案
+INFO:agents:  方案生成完成: 基于三维深度学习CT影像与治疗前后动态特征的非小细胞肺癌总生存期预测模型研究
+INFO:agents:[Step 5] 批判评估 — LLM对方案进行严格审查
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:39] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:43:43] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:agents:  批判评估完成: 总体评分=80
+INFO:agents:[Step 6] 修订优化 — 根据批判意见修订方案
+WARNING:agents:JSON解析：通过正则提取成功 [RevisionAgent._ai_revise_plan]，提取了 14 个字段
+INFO:agents:  修订优化完成，字段: ['title', 'background', 'clinical_problem', 'scientific_problem', 'hypothesis', 'objectives', 'study_design', 'subjects_criteria', 'variables_endpoints', 'statistical_analysis', 'innovation', 'risks_alternatives', 'timeline', 'sample_size', 'ai_revised']
+INFO:agents:  [ResultBuilder] 用户原始输入已注入 final_plan
+INFO:evidence_pool:[EvidencePool] 研究空白发现: 方法学=0, 数据=0, 矛盾=0
+INFO:agents:多智能体协同研究方案生成完成
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:44:43] "GET /api/multi-agent/task/6541529e HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:44:45] "GET /socket.io/?EIO=4&transport=websocket&sid=YS6lj65P7_-sCKSBAAAA HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:44:45] "GET /api/research/plan/389 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:44:45] "GET /api/research/plan/389 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:48:25] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:48:25] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:48:32] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:48:32] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:routes.llm_settings:用户 1 保存了 API Key (provider=gpt54)
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:00] "POST /api/settings/llm/key HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:00] "GET /api/settings/llm HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:04] "POST /api/settings/llm/test HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:07] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:07] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:08] "GET /api/profile/options HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:09] "GET /api/profile/options HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:09] "GET /api/profile/student/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:09] "GET /api/profile/student/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:31] "GET /api/profile/student/3 HTTP/1.1" 200 -
+INFO:routes.profile:学生画像更新成功: 用户ID 3
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:31] "PUT /api/profile/student/3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:31] "[35m[1mPOST /api/multi-agent/generate-plan HTTP/1.1[0m" 202 -
+INFO:agents:============================================================
+INFO:agents:开始多智能体协同研究方案生成流程
+INFO:agents:============================================================
+INFO:evidence_pool:[EvidencePool] 证据池已重置
+INFO:agents:  全局证据池已重置
+INFO:agents:[Step 0] 输入解析 — LLM语义理解用户输入
+INFO:agents:[InputParsingAgent] ReAct 循环 step 1/3
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:32] "GET /socket.io/?EIO=4&transport=polling&t=PwDKJs6 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:32] "POST /socket.io/?EIO=4&transport=polling&t=PwDKJx5&sid=dMRosaYESS50ClZLAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:32] "GET /socket.io/?EIO=4&transport=polling&t=PwDKJx6&sid=dMRosaYESS50ClZLAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:32] "POST /socket.io/?EIO=4&transport=polling&t=PwDKK04&sid=dMRosaYESS50ClZLAAAC HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:33] "GET /socket.io/?EIO=4&transport=polling&t=PwDKK04.0&sid=dMRosaYESS50ClZLAAAC HTTP/1.1" 200 -
+INFO:agents:[InputParsingAgent] ReAct 循环完成，共 1 步
+ERROR:agents:JSON解析失败 [InputParsingAgent]，原始响应前200字符: 
+ERROR:agents:[InputParsingAgent] 最终输出解析失败: 无法解析AI返回的JSON [InputParsingAgent]
+INFO:agents:  解析完成: 疾病域=未知, 模态=未知, 完整度=未知
+INFO:agents:[Step 1] 学生画像分析 — LLM解析用户输入
+INFO:agents:parse_student_input called with type=dict, keys=['id', 'user_id', 'grade', 'specialty', 'available_resources', 'case_scale', 'follow_up_available', 'gold_standard_available', 'statistical_background', 'ai_background', 'time_constraint', 'target_journal_level', 'created_at', 'updated_at', 'raw_input']
+INFO:agents:extract_basic_info called with type=str
+INFO:agents:  [ProfileAgent] AI补全字段: ['has_data', 'data_volume', 'gold_standard_available', 'follow_up_available', 'software_capability', 'statistical_background', 'ai_background', 'expected_graduation', 'target_journal_level', 'supervisor_support', 'ethical_feasibility', 'cross_dept_resources']
+INFO:agents:  [ProfileAgent] 补全前: grade=未知, ai_bg=, stats_bg=
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:34] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:agents:  [ProfileAgent] 合并后: ai_bg=熟练, stats_bg=熟练, grade=博四及以上, time=24个月以上, journal=SCI高分
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:38] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:40] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:44] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:46] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:agents:  学生画像完成: 放射学
+INFO:agents:[Step 2] 问题定义 — LLM定义临床/科学问题
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:50] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:52] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:56] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:49:58] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:02] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:05] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:08] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:agents:  临床问题: 在癌症患者的临床管理中，影像学所反映的肿瘤异质性、侵袭性和潜在复发风险往往难以被常规阅片充分识别，导致术前或治疗前对个体...
+INFO:agents:[Step 3] 证据检索 — LLM驱动PubMed检索策略
+INFO:agents:  [EvidenceRetrieval] LLM分析研究意图，生成检索策略
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:11] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:14] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:17] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:20] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:agents:  [EvidenceRetrieval] 检索策略: CT/MRI放射组学融合临床变量的癌症预后风险分层检索
+INFO:agents:  [EvidenceRetrieval] 检索 PubMed...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:23] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:26] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:29] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:32] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics in colorectal cancer patients.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: PET/CT: Nasopharyngeal Cancers.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: An MRI radiomics approach to predict survival and ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Artificial Intelligence in Pancreatic Imaging: A S... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Magnetic resonance imaging radiomics predicts preo... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Interpretable machine learning model for predictin... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Artificial intelligence for pre-operative lymph no... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Habitat radiomics analysis for progression free su... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Non-invasive prediction of NSCLC immunotherapy eff... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Intratumoral and peritumoral PET/CT-based radiomic... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Development and Validation of a Preoperative Magne... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Utilizing Clinicopathological and Radiomic Feature... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics++: Review of Habitat Imaging Analysis fo... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics and liver: Where we are and where we are... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: A clinical-radiomic-pathomic model for prognosis p... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomic signatures associated with tumor immune h... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiogenomics and radiomics of skull base chordoma... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics in CT and MR imaging of the liver and pa... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: The Role of Radiomics in Rectal Cancer.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Imaging Evaluation of Peritoneal Metastasis: Curre... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics applications in cardiac imaging: a compr... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics systematic review in cervical cancer: gy... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: MRI-derived radiomics models for diagnosis, aggres... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Quantitative Imaging and Radiomics in Multiple Mye... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics analysis using machine learning to predi... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: The application of radiomics in laryngeal cancer.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Tumor heterogeneity estimation for radiomics in ca... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: MRI radiomics and nutritional-inflammatory biomark... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Hepatobiliary and Pancreatic Neoplasms: Essential ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Magnetic resonance imaging-radiomics in endometria... | 等级: 1 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics in breast cancer classification and pred... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: CT Radiomics to Predict Macrotrabecular-Massive Su... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiogenomic analysis reveals tumor heterogeneity ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics signature for dynamic monitoring of tumo... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomic analysis of contrast-enhanced CT predicts... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics-Based Support Vector Machine Distinguish... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: ITHscore: comprehensive quantification of intra-tu... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Habitat-aware radiomics and adaptive 2.5D deep lea... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics in Hepatocellular Carcinoma.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Multiparametric MRI subregion radiomics for preope... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics-based ensemble model predicts postoperat... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiogenomics and Its Role in Lymphoma.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Machine Learning and Radiomics in Gliomas.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Single and multi-site CT-based radiogenomics analy... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics and deep learning in lung cancer.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Personalized prediction of immunotherapy response ... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Overview of radiomics in breast cancer diagnosis a... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomic-based prediction of lesion-specific syste... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics in breast cancer: Current advances and f... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics analysis to predict pulmonary nodule mal... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics and artificial intelligence for precisio... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: A Machine Learning Model Based on PET/CT Radiomics... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Deep learning-based radiomics and machine learning... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Computer Vision-Radiomics & Pathognomics.... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Habitat Radiomics Based on MRI for Predicting Meta... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Machine Learning Model for Predicting Pheochromocy... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Tumor grade-titude: XGBoost radiomics paves the wa... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Machine learning for grading prediction and surviv... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: A review of radiomics and genomics applications in... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Integration of habitat radiomics and traditional r... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Application of radiomics and machine learning in h... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Machine learning-based radiomics for predicting BR... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Prediction of tumor-infiltrating lymphocytes throu... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: A predictive system comprising serum microRNAs and... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Multi-machine learning model based on radiomics fe... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Radiomics in stratification of pancreatic cystic l... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Applications and Integration of Radiomics for Skul... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 批量入库: 新增 67/67 篇
+INFO:agents:  [EvidenceRetrieval] PubMed 返回 67 篇，67 篇新入库（证据池共 67 篇）
+INFO:agents:  [EvidenceRetrieval] 后台检索 arXiv（不阻塞主流程）...
+INFO:agents:  [EvidenceRetrieval] 等待 arXiv 后台检索（最多60秒）...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:35] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:api_clients:  [arXiv/CrossRef] 检索完成: 返回 10 篇
+INFO:evidence_pool:[EvidencePool] 新文献入库: Fig. 1. A schematic depiction of the radiomics wor... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Editorial for “Risk Stratification and Overall Sur... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Imaging in Pancreatic Cancer: Spiral Computed Tomo... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Malignant Sex Cord-Stromal Tumor: Computed Tomogra... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Risk Stratification and Overall Survival Predictio... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Imaging of cartilage, meniscus, and beyond: Role o... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Editorial for “Multiparametric <scp>MRI</scp>‐Base... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Nasopharyngeal Carcinoma (NPC) : The value of 18-F... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Fig. 3. Computed tomography (CT), magnetic resonan... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 新文献入库: Anatomy and Imaging of the Cranial Nerves... | 等级: 4 | 来源: EvidenceRetrievalAgent
+INFO:evidence_pool:[EvidencePool] 批量入库: 新增 10/10 篇
+INFO:agents:  [EvidenceRetrieval] arXiv 后台检索完成: 10 篇，10 篇入库
+INFO:agents:  [EvidenceRetrieval] arXiv 检索成功，补充 10 篇
+INFO:agents:  [EvidenceRetrieval] 共检索到 77 篇原始文献 (PubMed:67, arXiv:10)
+INFO:agents:  [EvidenceRetrieval] LLM评估文献相关性...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:38] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:41] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:44] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:47] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:50] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:53] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:56] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:50:59] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:agents:  [EvidenceRetrieval] 融合评分: 最高=86.8, 最低=38.2, 共29篇
+INFO:agents:  [EvidenceRetrieval] 相关性筛选后保留 29 篇
+INFO:agents:  [EvidenceRetrieval] LLM提炼证据综述...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:51:43] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:evidence_pool:[EvidencePool] 研究空白发现: 方法学=0, 数据=0, 矛盾=0
+INFO:agents:  检索到 0 篇文献
+INFO:agents:[Step 4] 方案生成 — 结合文献证据生成研究方案
+INFO:agents:  [PlanGeneration] 尝试生成 (attempt=1, max_tokens=3000)
+INFO:agents:Attempting to parse AI response, length: 3669
+INFO:agents:Successfully parsed AI response with keys: ['title', 'background', 'clinical_problem', 'scientific_problem', 'hypothesis', 'objectives', 'study_design', 'subjects_criteria', 'variables_endpoints', 'statistical_analysis', 'innovation', 'risks_alternatives', 'timeline']
+INFO:agents:方案相关性检查失败: 匹配关键词 []/['放射学预测癌', '提出一种基于', '症的方法'] (比例: 0.00)
+WARNING:agents:AI生成的方案相关性不足，尝试重新生成
+INFO:agents:  [PlanGeneration] 尝试生成 (attempt=2, max_tokens=2500)
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:52:43] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:agents:Attempting to parse AI response, length: 3650
+INFO:agents:Successfully parsed AI response with keys: ['title', 'background', 'clinical_problem', 'scientific_problem', 'hypothesis', 'objectives', 'study_design', 'subjects_criteria', 'variables_endpoints', 'statistical_analysis', 'innovation', 'risks_alternatives', 'timeline']
+INFO:agents:方案相关性检查失败: 匹配关键词 []/['放射学预测癌', '提出一种基于', '症的方法'] (比例: 0.00)
+WARNING:agents:AI生成的方案相关性不足，尝试重新生成
+INFO:agents:  [PlanGeneration] 尝试生成 (attempt=3, max_tokens=2000)
+INFO:agents:Attempting to parse AI response, length: 3645
+INFO:agents:Successfully parsed AI response with keys: ['title', 'background', 'clinical_problem', 'scientific_problem', 'hypothesis', 'objectives', 'study_design', 'subjects_criteria', 'variables_endpoints', 'statistical_analysis', 'innovation', 'risks_alternatives', 'timeline']
+INFO:agents:方案相关性检查失败: 匹配关键词 []/['放射学预测癌', '提出一种基于', '症的方法'] (比例: 0.00)
+WARNING:agents:多次生成方案相关性仍不足，返回已生成的最优方案
+INFO:agents:  方案生成完成: 基于CT/MRI放射组学融合临床变量的癌症预后风险预测模型构建与验证
+INFO:agents:[Step 5] 批判评估 — LLM对方案进行严格审查
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:53:43] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:agents:  批判评估完成: 总体评分=73
+INFO:agents:[Step 6] 修订优化 — 根据批判意见修订方案
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:54:39] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:54:41] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:54:44] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:54:47] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:54:50] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:54:53] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:54:56] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:54:59] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:02] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:05] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:08] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:11] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:14] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+WARNING:api_clients:连接错误，第1次重试，等待3.0秒...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:17] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:20] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:23] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:26] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:29] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:32] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:35] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:38] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:55:41] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+WARNING:api_clients:连接错误，第2次重试，等待6.0秒...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:56:43] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+WARNING:api_clients:连接错误，第3次重试，等待12.0秒...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:57:43] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+WARNING:api_clients:连接错误，第4次重试，等待24.0秒...
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 19:58:31] "GET /socket.io/?EIO=4&transport=websocket&sid=dMRosaYESS50ClZLAAAC HTTP/1.1" 200 -
+INFO:agents:  修订优化完成，字段: ['title', 'background', 'clinical_problem', 'scientific_problem', 'hypothesis', 'objectives', 'study_design', 'subjects_criteria', 'variables_endpoints', 'statistical_analysis', 'innovation', 'risks_alternatives', 'timeline']
+INFO:agents:  [ResultBuilder] 用户原始输入已注入 final_plan
+INFO:evidence_pool:[EvidencePool] 研究空白发现: 方法学=0, 数据=0, 矛盾=0
+INFO:agents:多智能体协同研究方案生成完成
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:17] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:17] "GET /api/multi-agent/task/dcbc3dd9 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:17] "GET /socket.io/?EIO=4&transport=polling&t=PwDd1TN HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:18] "POST /socket.io/?EIO=4&transport=polling&t=PwDd1Yg&sid=GflRR4ZchxKnbe-VAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:18] "GET /socket.io/?EIO=4&transport=polling&t=PwDd1Yi&sid=GflRR4ZchxKnbe-VAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:18] "POST /socket.io/?EIO=4&transport=polling&t=PwDd1dy&sid=GflRR4ZchxKnbe-VAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:18] "GET /socket.io/?EIO=4&transport=polling&t=PwDd1dz&sid=GflRR4ZchxKnbe-VAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:18] "GET /socket.io/?EIO=4&transport=websocket&sid=GflRR4ZchxKnbe-VAAAE HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:18] "GET /api/research/plan/390 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:11:18] "GET /api/research/plan/390 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:00] "GET /api/research/plan/390/versions HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:08] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:08] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:24] "GET /api/research/plan/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:24] "GET /api/research/plan/1 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:29] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:29] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -

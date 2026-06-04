@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Form, Alert, Row, Col, Badge, Spinner, InputGroup } from 'react-bootstrap';
-import { BiKey, BiServer, BiChip, BiCheckCircle, BiXCircle, BiLoaderAlt, BiShow, BiHide, BiRefresh } from 'react-icons/bi';
+import { BiKey, BiChip, BiCheckCircle, BiXCircle, BiLoaderAlt, BiShow, BiHide, BiRefresh } from 'react-icons/bi';
 import apiClient from '../config';
 
 /**
- * API 设置页面 — 支持切换 LLM 模型提供商（LongCat / DeepSeek / OpenAI）
+ * API 设置页面 — 用户选择提供商 + 配置自己的 API Key
+ * 提供商定义是系统预设的，API Key 是每个用户私有的
  */
 function ApiSettings() {
   const [presets, setPresets] = useState({});
-  const [activeProvider, setActiveProvider] = useState('longcat');
-  const [activeConfig, setActiveConfig] = useState(null);
 
   // 表单状态
   const [selectedProvider, setSelectedProvider] = useState('longcat');
   const [apiKey, setApiKey] = useState('');
-  const [baseUrl, setBaseUrl] = useState('');
-  const [model, setModel] = useState('');
   const [showApiKey, setShowApiKey] = useState(false);
 
   // UI 状态
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [testing, setTesting] = useState(false);
-  const [message, setMessage] = useState(null); // { type: 'success'|'danger'|'info', text: '...' }
+  const [message, setMessage] = useState(null);
   const [testResult, setTestResult] = useState(null);
+  const [userProvider, setUserProvider] = useState('longcat');
+  const [hasCustomKey, setHasCustomKey] = useState(false);
 
   // 加载当前配置
   useEffect(() => {
@@ -36,16 +35,9 @@ function ApiSettings() {
       const res = await apiClient.get('/api/settings/llm');
       if (res.data.success) {
         setPresets(res.data.presets || {});
-        setActiveProvider(res.data.active_provider || 'longcat');
-        setActiveConfig(res.data.active_config || null);
-
-        // 初始化表单为当前激活的配置
-        const provider = res.data.active_provider || 'longcat';
-        setSelectedProvider(provider);
-        const preset = res.data.presets?.[provider] || {};
-        setBaseUrl(preset.base_url || '');
-        setModel(preset.model || '');
-        // API Key 不预填（安全）
+        setUserProvider(res.data.user_provider || 'longcat');
+        setHasCustomKey(res.data.has_custom_key || false);
+        setSelectedProvider(res.data.user_provider || 'longcat');
         setApiKey('');
       }
     } catch (err) {
@@ -55,20 +47,15 @@ function ApiSettings() {
     }
   };
 
-  // 切换选中的 provider 时更新表单
+  // 切换提供商
   const handleProviderChange = (provider) => {
     setSelectedProvider(provider);
-    const preset = presets[provider] || {};
-    setBaseUrl(preset.base_url || '');
-    setModel(preset.model || '');
-    setApiKey('');
     setTestResult(null);
     setMessage(null);
   };
 
-  // 保存并切换
-  const handleSave = async (e) => {
-    e.preventDefault();
+  // 保存 API Key
+  const handleSaveKey = async () => {
     if (!apiKey.trim()) {
       setMessage({ type: 'danger', text: '请输入 API Key' });
       return;
@@ -78,36 +65,48 @@ function ApiSettings() {
     setTestResult(null);
 
     try {
-      const res = await apiClient.post('/api/settings/llm/switch', {
-        provider: selectedProvider,
+      const res = await apiClient.post('/api/settings/llm/key', {
         api_key: apiKey.trim(),
-        base_url: baseUrl.trim(),
-        model: model.trim(),
-        save_to_env: true,
+        provider: selectedProvider,
       });
 
       if (res.data.success) {
-        setActiveProvider(res.data.active.provider);
-        setActiveConfig(res.data.active);
-        setMessage({ type: 'success', text: res.data.message + ' 配置已保存到 .env 文件' });
-        // 刷新完整配置
+        setUserProvider(res.data.user_provider);
+        setSelectedProvider(res.data.user_provider);
+        setHasCustomKey(true);
+        setMessage({ type: 'success', text: 'API Key 已保存，提供商已切换' });
         await fetchSettings();
       } else {
-        setMessage({ type: 'danger', text: res.data.error || '切换失败' });
+        setMessage({ type: 'danger', text: res.data.error || '保存失败' });
       }
     } catch (err) {
-      setMessage({ type: 'danger', text: '切换失败: ' + (err.response?.data?.error || err.message) });
+      setMessage({ type: 'danger', text: '保存失败: ' + (err.response?.data?.error || err.message) });
     } finally {
       setSaving(false);
     }
   };
 
+  // 清除 API Key（恢复默认）
+  const handleClearKey = async () => {
+    try {
+      const res = await apiClient.delete('/api/settings/llm/key');
+      if (res.data.success) {
+        setHasCustomKey(false);
+        setUserProvider(res.data.user_provider);
+        setSelectedProvider(res.data.user_provider);
+        setApiKey('');
+        setMessage({ type: 'success', text: '已恢复默认配置' });
+        await fetchSettings();
+      } else {
+        setMessage({ type: 'danger', text: res.data.error || '操作失败' });
+      }
+    } catch (err) {
+      setMessage({ type: 'danger', text: '操作失败: ' + (err.response?.data?.error || err.message) });
+    }
+  };
+
   // 测试连接
   const handleTest = async () => {
-    if (!apiKey.trim()) {
-      setMessage({ type: 'danger', text: '请先输入 API Key' });
-      return;
-    }
     setTesting(true);
     setTestResult(null);
     setMessage(null);
@@ -115,9 +114,6 @@ function ApiSettings() {
     try {
       const res = await apiClient.post('/api/settings/llm/test', {
         provider: selectedProvider,
-        api_key: apiKey.trim(),
-        base_url: baseUrl.trim(),
-        model: model.trim(),
       });
 
       if (res.data.success) {
@@ -142,7 +138,7 @@ function ApiSettings() {
   }
 
   const currentPreset = presets[selectedProvider] || {};
-  const isActive = activeProvider === selectedProvider;
+  const isActive = userProvider === selectedProvider;
 
   return (
     <div className="container-fluid py-4">
@@ -177,13 +173,12 @@ function ApiSettings() {
                 </Card.Header>
                 <Card.Body className="p-0">
                   {Object.entries(presets).map(([key, preset]) => {
-                    const active = activeProvider === key;
-                    const selected = selectedProvider === key;
+                    const isCurrent = userProvider === key;
                     return (
                       <button
                         key={key}
                         className={`btn w-100 text-start d-flex align-items-center gap-3 p-3 border-0 border-bottom rounded-0 ${
-                          selected ? 'bg-primary bg-opacity-10' : 'bg-white'
+                          isCurrent ? 'bg-primary bg-opacity-10' : 'bg-white'
                         }`}
                         onClick={() => handleProviderChange(key)}
                       >
@@ -191,8 +186,8 @@ function ApiSettings() {
                         <div className="flex-grow-1">
                           <div className="d-flex align-items-center gap-2">
                             <span className="fw-semibold">{preset.label}</span>
-                            {active && <Badge bg="success" pill>当前使用</Badge>}
-                            {preset.has_key && (
+                            {isCurrent && <Badge bg="success" pill>当前使用</Badge>}
+                            {hasCustomKey && userProvider === key && (
                               <Badge bg="info" pill>
                                 <BiKey size={10} /> 已配置
                               </Badge>
@@ -200,7 +195,7 @@ function ApiSettings() {
                           </div>
                           <div className="text-muted small mt-0.5">{preset.description}</div>
                         </div>
-                        {selected && <BiCheckCircle className="text-primary" size={20} />}
+                        {isCurrent && <BiCheckCircle className="text-primary" size={20} />}
                       </button>
                     );
                   })}
@@ -208,175 +203,174 @@ function ApiSettings() {
               </Card>
 
               {/* 当前激活信息 */}
-              {activeConfig && (
-                <Card className="border-0 shadow-sm">
-                  <Card.Header className="bg-white">
-                    <h6 className="mb-0">当前激活配置</h6>
-                  </Card.Header>
-                  <Card.Body>
-                    <div className="small">
-                      <div className="d-flex justify-content-between mb-2">
-                        <span className="text-muted">提供商</span>
-                        <span className="fw-medium">{presets[activeProvider]?.icon} {activeConfig.label}</span>
-                      </div>
-                      <div className="d-flex justify-content-between mb-2">
-                        <span className="text-muted">模型</span>
-                        <code className="small">{activeConfig.model}</code>
-                      </div>
-                      <div className="d-flex justify-content-between mb-2">
-                        <span className="text-muted">API Key</span>
-                        <span className={activeConfig.has_key ? 'text-success' : 'text-danger'}>
-                          {activeConfig.has_key ? '已配置' : '未配置'}
-                        </span>
-                      </div>
-                      <div className="d-flex justify-content-between">
-                        <span className="text-muted">API Key 变量</span>
-                        <code className="small">{activeConfig.api_key_env}</code>
-                      </div>
+              <Card className="border-0 shadow-sm">
+                <Card.Header className="bg-white">
+                  <h6 className="mb-0">当前激活配置</h6>
+                </Card.Header>
+                <Card.Body>
+                  <div className="small">
+                    <div className="d-flex justify-content-between mb-2">
+                      <span className="text-muted">提供商</span>
+                      <span className="fw-medium">{presets[userProvider]?.icon} {presets[userProvider]?.label}</span>
                     </div>
-                  </Card.Body>
-                </Card>
-              )}
+                    <div className="d-flex justify-content-between mb-2">
+                      <span className="text-muted">模型</span>
+                      <code className="small">{presets[userProvider]?.model}</code>
+                    </div>
+                    <div className="d-flex justify-content-between mb-2">
+                      <span className="text-muted">API Key</span>
+                      <span className={hasCustomKey ? 'text-success' : 'text-warning'}>
+                        {hasCustomKey ? '已配置' : '未配置（使用系统默认）'}
+                      </span>
+                    </div>
+                    <div className="d-flex justify-content-between">
+                      <span className="text-muted">Base URL</span>
+                      <code className="small">{presets[userProvider]?.base_url}</code>
+                    </div>
+                  </div>
+                </Card.Body>
+              </Card>
             </Col>
 
-            {/* 右侧：配置表单 */}
+            {/* 右侧：API Key 配置 */}
             <Col lg={8}>
               <Card className="border-0 shadow-sm">
                 <Card.Header className="bg-white d-flex align-items-center gap-2">
                   <span style={{ fontSize: '1.3rem' }}>{currentPreset.icon}</span>
-                  <h5 className="mb-0">{currentPreset.label} 配置</h5>
-                  {isActive && <Badge bg="success">当前使用中</Badge>}
+                  <h5 className="mb-0">{currentPreset.label}</h5>
+                  {userProvider === selectedProvider && <Badge bg="success">当前使用</Badge>}
                 </Card.Header>
                 <Card.Body>
-                  <Form onSubmit={handleSave}>
-                    {/* API Key */}
-                    <Form.Group className="mb-4">
-                      <Form.Label className="fw-semibold d-flex align-items-center gap-2">
-                        <BiKey className="text-warning" />
-                        {currentPreset.api_key_label || 'API Key'}
-                        <span className="text-danger">*</span>
-                      </Form.Label>
-                      <InputGroup>
-                        <Form.Control
-                          type={showApiKey ? 'text' : 'password'}
-                          placeholder={currentPreset.api_key_placeholder || '输入 API Key'}
-                          value={apiKey}
-                          onChange={(e) => setApiKey(e.target.value)}
-                          className="font-monospace"
-                        />
-                        <Button
-                          variant="outline-secondary"
-                          onClick={() => setShowApiKey(!showApiKey)}
-                          title={showApiKey ? '隐藏' : '显示'}
-                        >
-                          {showApiKey ? <BiHide /> : <BiShow />}
-                        </Button>
-                      </InputGroup>
-                      <Form.Text className="text-muted">
-                        输入你的 {currentPreset.label} API Key。留空则使用 .env 文件中已有的配置。
-                      </Form.Text>
-                    </Form.Group>
+                  {/* 提供商信息（只读） */}
+                  <div className="mb-4 p-3 bg-light rounded">
+                    <Row>
+                      <Col sm={4}><span className="text-muted small">提供商</span></Col>
+                      <Col sm={8}><strong>{currentPreset.label}</strong></Col>
+                    </Row>
+                    <Row className="mt-1">
+                      <Col sm={4}><span className="text-muted small">模型</span></Col>
+                      <Col sm={8}><code className="small">{currentPreset.model}</code></Col>
+                    </Row>
+                    <Row className="mt-1">
+                      <Col sm={4}><span className="text-muted small">Base URL</span></Col>
+                      <Col sm={8}><code className="small">{currentPreset.base_url}</code></Col>
+                    </Row>
+                    <Row className="mt-1">
+                      <Col sm={4}><span className="text-muted small">API Key</span></Col>
+                      <Col sm={8}>
+                        {hasCustomKey ? (
+                          <span className="text-success">已配置</span>
+                        ) : (
+                          <span className="text-warning">未配置（使用系统默认）</span>
+                        )}
+                      </Col>
+                    </Row>
+                  </div>
 
-                    {/* Base URL */}
-                    <Form.Group className="mb-4">
-                      <Form.Label className="fw-semibold d-flex align-items-center gap-2">
-                        <BiServer className="text-info" />
-                        Base URL
-                      </Form.Label>
+                  {/* API Key 输入 */}
+                  <Form.Group className="mb-4">
+                    <Form.Label className="fw-semibold d-flex align-items-center gap-2">
+                      <BiKey className="text-warning" />
+                      API Key
+                    </Form.Label>
+                    <InputGroup>
                       <Form.Control
-                        type="text"
-                        placeholder="https://api.example.com"
-                        value={baseUrl}
-                        onChange={(e) => setBaseUrl(e.target.value)}
-                        className="font-monospace small"
+                        type={showApiKey ? 'text' : 'password'}
+                        placeholder="输入你的 API Key（留空则使用系统默认）"
+                        value={apiKey}
+                        onChange={(e) => setApiKey(e.target.value)}
+                        className="font-monospace"
                       />
-                      <Form.Text className="text-muted">
-                        API 服务地址，使用默认值即可。如需自定义代理请修改此字段。
-                      </Form.Text>
-                    </Form.Group>
-
-                    {/* Model */}
-                    <Form.Group className="mb-4">
-                      <Form.Label className="fw-semibold d-flex align-items-center gap-2">
-                        <BiChip className="text-primary" />
-                        模型名称
-                      </Form.Label>
-                      <Form.Control
-                        type="text"
-                        placeholder="model-name"
-                        value={model}
-                        onChange={(e) => setModel(e.target.value)}
-                        className="font-monospace small"
-                      />
-                      <Form.Text className="text-muted">
-                        推荐：LongCat → <code>LongCat-2.0-Preview</code>，DeepSeek → <code>deepseek-chat</code>，OpenAI → <code>gpt-4o</code>
-                      </Form.Text>
-                    </Form.Group>
-
-                    {/* 操作按钮 */}
-                    <div className="d-flex gap-3">
                       <Button
-                        variant="primary"
-                        type="submit"
-                        disabled={saving}
+                        variant="outline-secondary"
+                        onClick={() => setShowApiKey(!showApiKey)}
+                        title={showApiKey ? '隐藏' : '显示'}
+                      >
+                        {showApiKey ? <BiHide /> : <BiShow />}
+                      </Button>
+                    </InputGroup>
+                    <Form.Text className="text-muted">
+                      你的 API Key 仅保存在你的账户中，不会泄露给其他用户。
+                    </Form.Text>
+                  </Form.Group>
+
+                  {/* 操作按钮 */}
+                  <div className="d-flex gap-3 flex-wrap">
+                    <Button
+                      variant="primary"
+                      onClick={handleSaveKey}
+                      disabled={saving}
+                      className="d-flex align-items-center gap-2"
+                    >
+                      {saving ? (
+                        <><BiLoaderAlt className="spin" /> 保存中...</>
+                      ) : (
+                        <><BiCheckCircle /> 保存 API Key 并切换</>
+                      )}
+                    </Button>
+                    <Button
+                      variant="outline-info"
+                      onClick={handleTest}
+                      disabled={testing}
+                      className="d-flex align-items-center gap-2"
+                    >
+                      {testing ? (
+                        <><BiLoaderAlt className="spin" /> 测试中...</>
+                      ) : (
+                        <><BiChip /> 测试连接</>
+                      )}
+                    </Button>
+                    {hasCustomKey && (
+                      <Button
+                        variant="outline-danger"
+                        onClick={handleClearKey}
                         className="d-flex align-items-center gap-2"
                       >
-                        {saving ? (
-                          <><BiLoaderAlt className="spin" /> 保存中...</>
-                        ) : (
-                          <><BiCheckCircle /> 保存并切换</>
-                        )}
+                        <BiXCircle /> 清除 Key（恢复默认）
                       </Button>
-                      <Button
-                        variant="outline-info"
-                        onClick={handleTest}
-                        disabled={testing || !apiKey.trim()}
-                        className="d-flex align-items-center gap-2"
-                      >
-                        {testing ? (
-                          <><BiLoaderAlt className="spin" /> 测试中...</>
-                        ) : (
-                          <><BiChip /> 测试连接</>
-                        )}
-                      </Button>
-                    </div>
-
-                    {/* 测试结果 */}
-                    {testResult && (
-                      <Alert
-                        variant={testResult.success ? 'success' : 'danger'}
-                        className="mt-3 mb-0 d-flex align-items-center gap-2"
-                      >
-                        {testResult.success ? <BiCheckCircle size={18} /> : <BiXCircle size={18} />}
-                        <span>{testResult.message}</span>
-                      </Alert>
                     )}
-                  </Form>
+                  </div>
+
+                  {/* 测试结果 */}
+                  {testResult && (
+                    <Alert
+                      variant={testResult.success ? 'success' : 'danger'}
+                      className="mt-3 mb-0 d-flex align-items-center gap-2"
+                    >
+                      {testResult.success ? <BiCheckCircle size={18} /> : <BiXCircle size={18} />}
+                      <span>{testResult.message}</span>
+                    </Alert>
+                  )}
                 </Card.Body>
               </Card>
 
-              {/* 预设参考表 */}
+              {/* 所有可用提供商参考表 */}
               <Card className="border-0 shadow-sm mt-4">
                 <Card.Header className="bg-white">
-                  <h6 className="mb-0">📋 模型预设参考</h6>
+                  <h6 className="mb-0">📋 可用模型提供商</h6>
                 </Card.Header>
                 <Card.Body className="p-0">
                   <table className="table table-sm table-hover mb-0">
                     <thead className="table-light">
                       <tr>
                         <th>提供商</th>
-                        <th>默认 Base URL</th>
-                        <th>默认模型</th>
-                        <th>API Key 环境变量</th>
+                        <th>模型</th>
+                        <th>格式</th>
+                        <th>Base URL</th>
                       </tr>
                     </thead>
                     <tbody className="small">
                       {Object.entries(presets).map(([key, preset]) => (
-                        <tr key={key} className={key === activeProvider ? 'table-success' : ''}>
+                        <tr
+                          key={key}
+                          className={key === userProvider ? 'table-success' : ''}
+                          style={{ cursor: 'pointer' }}
+                          onClick={() => handleProviderChange(key)}
+                        >
                           <td>{preset.icon} {preset.label}</td>
-                          <td><code className="small">{preset.base_url}</code></td>
                           <td><code className="small">{preset.model}</code></td>
-                          <td><code className="small">{preset.api_key_env || '—'}</code></td>
+                          <td><Badge bg="secondary" pill>{preset.format === 'anthropic' ? 'Anthropic' : 'OpenAI'}</Badge></td>
+                          <td><code className="small">{preset.base_url}</code></td>
                         </tr>
                       ))}
                     </tbody>
@@ -384,17 +378,18 @@ function ApiSettings() {
                 </Card.Body>
               </Card>
 
-              {/* 环境变量说明 */}
+              {/* 说明 */}
               <Card className="border-0 shadow-sm mt-4">
                 <Card.Header className="bg-white">
-                  <h6 className="mb-0">💡 配置说明</h6>
+                  <h6 className="mb-0">💡 说明</h6>
                 </Card.Header>
                 <Card.Body className="small text-muted">
                   <ul className="mb-0 ps-3">
-                    <li>切换模型后，配置会自动保存到项目根目录的 <code>.env</code> 文件中</li>
-                    <li>重启后端服务后，新配置会自动生效</li>
-                    <li>API Key 仅保存在 <code>.env</code> 中，不会发送到前端显示</li>
-                    <li>LongCat 使用 Anthropic 兼容格式；DeepSeek 和 OpenAI 使用 OpenAI Chat Completions 格式</li>
+                    <li>每个用户有自己的 API Key，互不影响</li>
+                    <li>提供商配置是系统预设的，所有人共享同一套模型定义</li>
+                    <li>API Key 仅保存在你的账户中，不会泄露给其他用户</li>
+                    <li>如果不配置自己的 API Key，系统会使用默认配置</li>
+                    <li>LongCat 使用 Anthropic 格式；DeepSeek 和 GPT-5.4 使用 OpenAI 格式</li>
                     <li>切换提供商后，建议先点击"测试连接"确认配置正确</li>
                   </ul>
                 </Card.Body>

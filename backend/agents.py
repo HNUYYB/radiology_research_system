@@ -5097,13 +5097,23 @@ class MultiAgentCoordinator:
         self,
         student_input: str,
         student_profile_data: Dict = None,
+        api_key: str = None,
+        provider: str = None,
     ) -> Dict:
         """协调整个研究方案生成流程
 
         Args:
             student_input: 用户原始输入（纯文本字符串）
             student_profile_data: 数据库中的学生画像
+            api_key: 用户自己的 API Key（可选，不提供则用默认值）
+            provider: 用户选择的提供商（可选，不提供则用默认值）
         """
+        # 配置 LLM 客户端（用户级）
+        try:
+            anthropic_client.configure(api_key=api_key, provider=provider)
+        except Exception as e:
+            logger.warning(f"配置 LLM 客户端失败，使用默认配置: {e}")
+
         try:
             logger.info("=" * 60)
             logger.info("开始多智能体协同研究方案生成流程")

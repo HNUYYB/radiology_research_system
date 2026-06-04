@@ -263,10 +263,17 @@ def register_core_routes(app):
                         _update_task(task_id, status='running', step='获取学生画像', progress=5)
                         student_profile_data = get_student_profile(user_id)
 
+                        # 读取用户的 API Key 和提供商偏好
+                        from models import User
+                        user = User.query.get(user_id)
+                        user_api_key = user.llm_api_key if user and user.llm_api_key else None
+                        user_provider = user.llm_provider if user and user.llm_provider else None
+
                         _update_task(task_id, step='多智能体协同生成', progress=10)
                         from agents import multi_agent_coordinator
                         result = multi_agent_coordinator.coordinate_research_plan_generation(
-                            student_input, student_profile_data
+                            student_input, student_profile_data,
+                            api_key=user_api_key, provider=user_provider,
                         )
 
                         if 'error' in result:
@@ -352,9 +359,15 @@ def register_core_routes(app):
 
             with app.app_context():
                 student_profile_data = get_student_profile(user_id)
+                # 读取用户的 API Key 和提供商偏好
+                gen_user = User.query.get(user_id)
+                gen_api_key = gen_user.llm_api_key if gen_user and gen_user.llm_api_key else None
+                gen_provider = gen_user.llm_provider if gen_user and gen_user.llm_provider else None
+
                 from agents import multi_agent_coordinator
                 result = multi_agent_coordinator.coordinate_research_plan_generation(
-                    student_input, student_profile_data
+                    student_input, student_profile_data,
+                    api_key=gen_api_key, provider=gen_provider,
                 )
 
                 if 'error' in result:

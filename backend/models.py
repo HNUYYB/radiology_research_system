@@ -26,6 +26,10 @@ class User(db.Model):
     grade = db.Column(db.String(20))  # 研一、研二、研三、博一、博二、博三、博四及以上
     specialty = db.Column(db.String(100))  # 亚专业方向
 
+    # 用户级 LLM 配置（每个人有自己的 API Key 和提供商选择）
+    llm_provider = db.Column(db.String(20), default='longcat')  # 选择的提供商 key
+    llm_api_key = db.Column(db.String(200))  # 用户自己的 API Key（加密存储）
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -34,6 +38,8 @@ class User(db.Model):
             'user_type': self.user_type,
             'grade': self.grade,
             'specialty': self.specialty,
+            'llm_provider': self.llm_provider,
+            'llm_api_key': self.llm_api_key,
             'created_at': _fmt_dt(self.created_at)
         }
 

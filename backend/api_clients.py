@@ -10,26 +10,44 @@ logger = logging.getLogger(__name__)
 
 
 class AnthropicClient:
-    def __init__(self):
-        self._refresh_from_config()
-
-    def _refresh_from_config(self):
-        """从 Config 读取当前激活的 LLM 配置"""
-        llm_config = Config.get_active_llm_config()
-        self.provider = llm_config['provider']
-        self.api_key = llm_config['api_key']
-        self.base_url = llm_config['base_url']
-        self.model = llm_config['model']
+    def __init__(self, api_key: str = None, provider: str = None, base_url: str = None, model: str = None):
+        """
+        参数化构造，不再依赖全局 Config。
+        调用方传入用户自己的 api_key；provider/base_url/model 可从 Config.get_preset() 获取默认值。
+        """
+        from config import Config, DEFAULT_API_KEY, DEFAULT_PROVIDER
+        self.api_key = api_key or DEFAULT_API_KEY
+        self.provider = provider or DEFAULT_PROVIDER
+        preset = Config.get_preset(self.provider)
+        self.base_url = base_url or preset['base_url']
+        self.model = model or preset['model']
         self.timeout = 600  # 10分钟超时，长文本生成需要更长时间
         self.max_retries = 5  # 连接断开时最多重试5次
         self.base_delay = 3  # 基础等待秒数
+
+    def configure(self, api_key: str = None, provider: str = None, base_url: str = None, model: str = None):
+        """动态重新配置（用于切换用户/提供商时复用同一个实例）"""
+        from config import Config, DEFAULT_API_KEY, DEFAULT_PROVIDER
+        if api_key is not None:
+            self.api_key = api_key
+        if provider is not None:
+            self.provider = provider
+        preset = Config.get_preset(self.provider)
+        if base_url is not None:
+            self.base_url = base_url
+        else:
+            self.base_url = preset['base_url']
+        if model is not None:
+            self.model = model
+        else:
+            self.model = preset['model']
 
     def _get_api_url(self):
         """根据 provider 返回正确的 API URL"""
         base = self.base_url.rstrip('/')
         if self.provider == 'longcat':
             return f"{base}/v1/messages"
-        elif self.provider in ('deepseek', 'openai'):
+        elif self.provider in ('deepseek', 'openai', 'gpt54'):
             return f"{base}/chat/completions"
         return f"{base}/v1/messages"
 
@@ -71,9 +89,7 @@ class AnthropicClient:
                               system_prompt: str = None) -> str:
         """带指数退避重试的API调用（支持 LongCat / DeepSeek / OpenAI）"""
         import requests
-
-        # 每次调用前刷新配置（支持运行时切换）
-        self._refresh_from_config()
+        from config import Config
 
         api_url = self._get_api_url()
         headers = {
@@ -87,7 +103,11 @@ class AnthropicClient:
         if payload is None:
             payload = self._build_payload(prompt, max_tokens or 1000, system_prompt)
 
-        provider_label = Config.get_active_llm_config().get('label', self.provider)
+        try:
+            preset = Config.get_preset(self.provider)
+            provider_label = preset.get('label', self.provider)
+        except Exception:
+            provider_label = self.provider
         debug_logger.api_call(
             provider_label, 'POST', api_url,
             headers=dict(headers),
