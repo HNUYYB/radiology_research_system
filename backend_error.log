@@ -487,3 +487,10 @@ INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:24] "GET /api/research/plan/1 HTT
 INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:24] "GET /api/research/plan/1 HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:29] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
 INFO:werkzeug:127.0.0.1 - - [03/Jun/2026 21:12:29] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Jun/2026 22:10:49] "[31m[1mGET /api/research/plans?user_id=3 HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [06/Jun/2026 22:10:49] "[31m[1mGET /api/research/plans?user_id=3 HTTP/1.1[0m" 401 -
+INFO:werkzeug:127.0.0.1 - - [06/Jun/2026 22:10:50] "POST /api/auth/refresh HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Jun/2026 22:10:50] "POST /api/auth/refresh HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Jun/2026 22:10:51] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [06/Jun/2026 22:10:52] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [07/Jun/2026 11:29:40] "GET /api/research/plans?user_id=3 HTTP/1.1" 200 -

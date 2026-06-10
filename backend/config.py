@@ -56,7 +56,7 @@ LLM_PRESETS = {
 }
 
 # 默认提供商（新用户默认使用）
-DEFAULT_PROVIDER = 'longcat'
+DEFAULT_PROVIDER = 'gpt54'
 
 # 默认 API Key（从环境变量读取，禁止硬编码）
 DEFAULT_API_KEY = os.environ.get('DEFAULT_API_KEY', '')
