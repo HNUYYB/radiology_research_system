@@ -85,23 +85,59 @@ class AnthropicClient:
         else:
             return result.get("choices", [{}])[0].get("message", {}).get("content", "").strip()
 
-    def _call_api_with_retry(self, payload: dict = None, prompt: str = "", max_tokens: int = None,
-                              system_prompt: str = None) -> str:
-        """带指数退避重试的API调用（支持 LongCat / DeepSeek / OpenAI）"""
-        import requests
-        from config import Config
+    def _call_openai_sdk(self, messages: list, max_tokens: int, temperature: float = 0.1) -> str:
+        """使用 OpenAI Python SDK 调用 OpenAI 兼容 API（DeepSeek / GPT-54 等）"""
+        from openai import OpenAI
+        client = OpenAI(
+            api_key=self.api_key,
+            base_url=self.base_url,
+            timeout=self.timeout,
+        )
+        response = client.chat.completions.create(
+            model=self.model,
+            messages=messages,
+            max_tokens=max_tokens,
+            temperature=temperature,
+        )
+        return response.choices[0].message.content or ""
 
+    def _call_anthropic_native(self, payload: dict) -> str:
+        """使用 requests 调用 Anthropic 原生格式 API（LongCat）"""
+        import requests
         api_url = self._get_api_url()
         headers = {
             "Content-Type": "application/json",
             "Authorization": f"Bearer {self.api_key}",
+            "anthropic-version": "2023-06-01",
         }
-        # 仅 LongCat 需要 anthropic-version
-        if self.provider == 'longcat':
-            headers["anthropic-version"] = "2023-06-01"
+        response = requests.post(api_url, headers=headers, json=payload, timeout=self.timeout)
+        response.raise_for_status()
+        result = response.json()
+        return result.get("content", [{}])[0].get("text", "").strip()
+
+    def _clean_response(self, ai_response: str) -> str:
+        """清理markdown代码块标记"""
+        if ai_response.startswith('```json'):
+            ai_response = ai_response[7:]
+        if ai_response.startswith('```'):
+            ai_response = ai_response[3:]
+        if ai_response.endswith('```'):
+            ai_response = ai_response[:-3]
+        return ai_response.strip()
+
+    def _call_api_with_retry(self, payload: dict = None, prompt: str = "", max_tokens: int = None,
+                              system_prompt: str = None, temperature: float = 0.1) -> str:
+        """带指数退避重试的API调用（支持 LongCat / DeepSeek / OpenAI）"""
+        from config import Config
 
         if payload is None:
             payload = self._build_payload(prompt, max_tokens or 1000, system_prompt)
+
+        # 构建 messages（供 OpenAI SDK 使用）
+        messages = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({"role": "user", "content": prompt})
 
         try:
             preset = Config.get_preset(self.provider)
@@ -109,8 +145,8 @@ class AnthropicClient:
         except Exception:
             provider_label = self.provider
         debug_logger.api_call(
-            provider_label, 'POST', api_url,
-            headers=dict(headers),
+            provider_label, 'POST', self.base_url,
+            headers={'Authorization': 'Bearer ***'},
             payload={'model': self.model, 'max_tokens': max_tokens}
         )
         if prompt:
@@ -119,61 +155,38 @@ class AnthropicClient:
         last_error = None
         for attempt in range(self.max_retries):
             try:
-                response = requests.post(api_url, headers=headers, json=payload, timeout=self.timeout)
+                # 根据提供商选择调用方式
+                if self.provider == 'longcat':
+                    ai_response = self._call_anthropic_native(payload)
+                else:
+                    ai_response = self._call_openai_sdk(messages, max_tokens or 1000, temperature)
 
-                if response.status_code == 429:
-                    retry_after = response.headers.get('Retry-After')
-                    if retry_after:
-                        wait = float(retry_after)
-                    else:
-                        wait = self.base_delay * (2 ** attempt)
-                    logger.warning(f"API速率限制(429)，第{attempt+1}次重试，等待{wait:.1f}秒...")
-                    print(f"[API 429] 速率限制，等待 {wait:.1f}s 后重试 (第{attempt+1}/{self.max_retries}次)")
-                    time.sleep(wait)
-                    continue
-
-                response.raise_for_status()
-
-                result = response.json()
-                ai_response = self._extract_response_text(result)
+                ai_response = self._clean_response(ai_response)
 
                 debug_logger.api_response(
-                    provider_label, response.status_code,
+                    provider_label, 200,
                     {'response_length': len(ai_response), 'model': self.model}
                 )
                 debug_logger.ai_response_received(self.model, ai_response)
 
-                # 清理markdown代码块标记
-                if ai_response.startswith('```json'):
-                    ai_response = ai_response[7:]
-                if ai_response.startswith('```'):
-                    ai_response = ai_response[3:]
-                if ai_response.endswith('```'):
-                    ai_response = ai_response[:-3]
-                ai_response = ai_response.strip()
-
                 return ai_response
 
-            except requests.exceptions.HTTPError as e:
+            except Exception as e:
                 last_error = e
-                if response.status_code >= 500:
+                # 检查是否是可重试的错误
+                error_str = str(e).lower()
+                is_retryable = any(kw in error_str for kw in [
+                    '429', 'rate limit', '500', '502', '503', '504',
+                    'timeout', 'connection', 'connectionerror', 'remotedisconnected',
+                    'server disconnected', 'tryagain'
+                ])
+                if is_retryable:
                     wait = self.base_delay * (2 ** attempt)
-                    logger.warning(f"服务器错误({response.status_code})，第{attempt+1}次重试，等待{wait:.1f}秒...")
+                    logger.warning(f"API错误({type(e).__name__})，第{attempt+1}次重试，等待{wait:.1f}秒... 错误: {str(e)[:100]}")
+                    print(f"[API Retry] {type(e).__name__}: {str(e)[:80]} — 等待 {wait:.1f}s (第{attempt+1}/{self.max_retries}次)")
                     time.sleep(wait)
                     continue
                 raise
-            except requests.exceptions.Timeout as e:
-                last_error = e
-                wait = self.base_delay * (2 ** attempt)
-                logger.warning(f"请求超时，第{attempt+1}次重试，等待{wait:.1f}秒...")
-                time.sleep(wait)
-                continue
-            except requests.exceptions.ConnectionError as e:
-                last_error = e
-                wait = self.base_delay * (2 ** attempt)
-                logger.warning(f"连接错误，第{attempt+1}次重试，等待{wait:.1f}秒...")
-                time.sleep(wait)
-                continue
 
         raise Exception(f"API调用失败，已重试{self.max_retries}次。最后错误: {last_error}")
 
@@ -222,9 +235,11 @@ class AnthropicClient:
         else:
             full_prompt = prompt
 
-        payload = self._build_payload(full_prompt, max_tokens, system_prompt=None if system_prompt is None else system_prompt)
-
-        return self._call_api_with_retry(payload, prompt=full_prompt, max_tokens=max_tokens)
+        return self._call_api_with_retry(
+            prompt=full_prompt,
+            max_tokens=max_tokens,
+            system_prompt=system_prompt,
+        )
 
     def call_tech_solution_api(self, prompt: str, max_tokens: int = 200) -> str:
         """调用当前激活的 LLM API 生成技术方案"""
@@ -237,11 +252,12 @@ class AnthropicClient:
 4. 字数控制在100-200字内
 """
 
-        payload = self._build_payload(prompt, max_tokens, tech_system_prompt)
-        # 覆盖 temperature
-        payload["temperature"] = 0.7
-
-        return self._call_api_with_retry(payload, prompt=prompt, max_tokens=max_tokens)
+        return self._call_api_with_retry(
+            prompt=prompt,
+            max_tokens=max_tokens,
+            system_prompt=tech_system_prompt,
+            temperature=0.7,
+        )
 
 
 class PubMedClient:
