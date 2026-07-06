@@ -57,7 +57,7 @@ LLM_PROVIDER=gpt54
 # ── LongCat / Anthropic API (默认) ──
 ANTHROPIC_API_KEY=ak_2kn44a41p3s58Bp8fi0D18KD9kn4d
 ANTHROPIC_BASE_URL=https://api.longcat.chat/anthropic
-ANTHROPIC_MODEL=LongCat-2.0-Preview
+ANTHROPIC_MODEL=LongCat-2.0
 
 # ── GPT-5.4 Mini API (通过 api.ssopen.top 代理) ──
 OPENAI_API_KEY=sk-NwhxnJ3wqdu4cnYOk41PeHG1ocYpDolzRGmuUg2EsmoiH6Iq

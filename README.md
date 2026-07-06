@@ -53,7 +53,7 @@
 ```
 ANTHROPIC_API_KEY=your_longcat_api_key
 ANTHROPIC_BASE_URL=https://api.longcat.chat/anthropic
-ANTHROPIC_MODEL=LongCat-2.0-Preview
+ANTHROPIC_MODEL=LongCat-2.0
 PUBMED_API_KEY=your_pubmed_api_key
 DATABASE_URL=sqlite:///research_system.db
 SECRET_KEY=your_secret_key

@@ -26,7 +26,7 @@ LLM_PRESETS = {
     'longcat': {
         'label': 'LongCat 2.0 Preview',
         'base_url': 'https://api.longcat.chat/anthropic',
-        'model': 'LongCat-2.0-Preview',
+        'model': 'LongCat-2.0',
         'api_key_label': 'LongCat API Key',
         'api_key_placeholder': 'sk-xxxxxxxxxxxxxxxx',
         'icon': '🐱',
@@ -79,8 +79,8 @@ class Config:
     # ── LongCat / Anthropic API 配置 ──
     ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY')
     ANTHROPIC_BASE_URL = os.environ.get('ANTHROPIC_BASE_URL', 'https://api.longcat.chat/anthropic')
-    ANTHROPIC_MODEL = os.environ.get('ANTHROPIC_MODEL', 'LongCat-2.0-Preview')
-    ANTHROPIC_SMALL_FAST_MODEL = os.environ.get('ANTHROPIC_SMALL_FAST_MODEL', 'LongCat-2.0-Preview')
+    ANTHROPIC_MODEL = os.environ.get('ANTHROPIC_MODEL', 'LongCat-2.0')
+    ANTHROPIC_SMALL_FAST_MODEL = os.environ.get('ANTHROPIC_SMALL_FAST_MODEL', 'LongCat-2.0')
 
     # 兼容旧配置
     CLAUDE_API_KEY = ANTHROPIC_API_KEY
